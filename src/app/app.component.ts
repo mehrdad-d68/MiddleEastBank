@@ -19,7 +19,6 @@ export class AppComponent {
       this.data=res
     })
   }
-
   changePagination(event:any){
     let params=new HttpParams()
     params = params.append('page',event.page)
