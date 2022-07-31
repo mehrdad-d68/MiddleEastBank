@@ -1,0 +1,41 @@
+<div class="container" >
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <ng-container *ngFor="let header of tableHeader">
+                    <th (click)="sortBy(header)">{{header}}</th>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of (data.data); index as i" >
+                <td>{{i+1}}</td>
+                <ng-container *ngFor="let h of tableHeader">
+                    <td (click)="getUserData(d.id)">{{d[h]}}</td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="row">
+            <div class="col-sm-4">
+                <select class="form-select" name="perPage" [(ngModel)]="data.per_page" (change)="paginationChaneg()">
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="col-sm-3 ">
+                <button type="button" (click)="paginationChaneg(-1)" [disabled]="data.page==1"
+                    class="btn btn-primary">pre</button>
+            </div>
+            <div class="col-sm-1  text-center">{{data.page}}</div>
+            <div class="col-sm-3 ">
+                <button type="button" (click)="paginationChaneg(1)" [disabled]=" (data.page)*(data.per_page)>=data.total"
+                    class="btn btn-primary">next</button>
+            </div>
+        </div>
+    </div>
+</div>
